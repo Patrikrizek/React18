@@ -2,21 +2,23 @@ import React from "react";
 import { useState } from "react";
 
 const StateIntro = () => {
-  // [false, true]
-  const [isVisible, setVisibility] = useState(false);
-  const [isApproved, setApproved] = useState(true);
-  let count = 0;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const fullName = firstName + " " + lastName;
 
-  const handleClick = () => {
-    setVisibility(true);
-    count++;
-    // setName('Patrik');
-    console.log(isVisible, count);
-  };
+  const [person, setPerson] = useState({
+    firstName: "",
+    lastName: "",
+  });
+
+  const [isLoading, setLoading] = useState(false);
 
   return (
     <div>
-      <button onClick={handleClick}>Show</button>
+      <p>
+        {firstName} {lastName}
+        {fullName}
+      </p>
     </div>
   );
 };

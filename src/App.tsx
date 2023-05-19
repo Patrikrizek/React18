@@ -32,8 +32,6 @@ function App() {
       <Like onClick={() => console.log("clicked")} />
       <StateIntro />
       <Message />
-      <Message />
-      <Message />
     </div>
   );
 }

@@ -31,7 +31,6 @@ function App() {
       <BsFillCalendarFill color="green" size="40" />
       <Like onClick={() => console.log("clicked")} />
       <StateIntro />
-      <Message />
     </div>
   );
 }

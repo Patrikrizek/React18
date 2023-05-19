@@ -2,23 +2,26 @@ import React from "react";
 import { useState } from "react";
 
 const StateIntro = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const fullName = firstName + " " + lastName;
-
-  const [person, setPerson] = useState({
-    firstName: "",
-    lastName: "",
+  const [drink, setDrink] = useState({
+    title: "Americano",
+    price: 5,
   });
 
-  const [isLoading, setLoading] = useState(false);
+  const handleClick = () => {
+    // const newDrink = {
+    //   ...drink,
+    //   // title: drink.title,
+    //   price: 6,
+    // };
+    // setDrink(newDrink);
+
+    setDrink({ ...drink, price: 6 });
+  };
 
   return (
     <div>
-      <p>
-        {firstName} {lastName}
-        {fullName}
-      </p>
+      {drink.price}
+      <button onClick={handleClick}>Click Me</button>
     </div>
   );
 };

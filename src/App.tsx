@@ -2,6 +2,7 @@ import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import Like from "./components/Like";
+import StateIntro from "./components/StateIntro";
 import { useState } from "react";
 import { BsFillCalendarFill } from "react-icons/bs";
 
@@ -28,6 +29,7 @@ function App() {
       <Button onClick={() => setAlertVisibility(true)}>Click me!</Button>
       <BsFillCalendarFill color="green" size="40" />
       <Like onClick={() => console.log("clicked")} />
+      <StateIntro />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
-import Button from "./components/Button/Button";
+import Button from "./components/Button";
 import { useState } from "react";
 import { BsFillCalendarFill } from "react-icons/bs";
 

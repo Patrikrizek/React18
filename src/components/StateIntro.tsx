@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import produce from "immer";
 
 const StateIntro = () => {
   const [bugs, setBugs] = useState([
@@ -8,12 +9,23 @@ const StateIntro = () => {
   ]);
 
   const handleClick = () => {
-    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
   };
 
   return (
     <div>
-      {bugs[0].title + bugs[0].fixed}
+      {bugs.map((bug) => (
+        <p key={bug.id}>
+          {bug.title} {bug.fixed ? "Fixed" : "New"}
+        </p>
+      ))}
       <button onClick={handleClick}>Click Me</button>
     </div>
   );

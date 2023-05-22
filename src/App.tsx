@@ -6,6 +6,8 @@ import StateIntro from "./components/StateIntro";
 import { useState } from "react";
 import { BsFillCalendarFill } from "react-icons/bs";
 import Message from "./components/Message";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart";
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -14,6 +16,8 @@ function App() {
   const handleSelectItem = () => {
     console.log("clicked");
   };
+
+  const [cardItems, setCardItems] = useState(["Product 1", "Product 2"]);
 
   return (
     <div>
@@ -31,6 +35,9 @@ function App() {
       <BsFillCalendarFill color="green" size="40" />
       <Like onClick={() => console.log("clicked")} />
       <StateIntro />
+
+      <NavBar cardItemsCount={cardItems.length} />
+      <Cart cartItems={cardItems} onClear={() => setCardItems([])} />
     </div>
   );
 }

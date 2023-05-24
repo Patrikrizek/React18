@@ -8,6 +8,9 @@ import { BsFillCalendarFill } from "react-icons/bs";
 import Message from "./components/Message";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
+import ExerciseUpdatingStateObject from "./components/ExerciseUpdatingStateObject";
+import ExerciseUpdateStateArray from "./components/ExerciseUpdateStateArray";
+import ExerciseUpdatingStateArrayOfObjects from "./components/ExerciseUpdatingStateArrayOfObjects";
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -38,6 +41,9 @@ function App() {
 
       <NavBar cardItemsCount={cardItems.length} />
       <Cart cartItems={cardItems} onClear={() => setCardItems([])} />
+      <ExerciseUpdatingStateObject />
+      <ExerciseUpdateStateArray />
+      <ExerciseUpdatingStateArrayOfObjects />
     </div>
   );
 }

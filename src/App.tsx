@@ -11,6 +11,7 @@ import Cart from "./components/Cart";
 import ExerciseUpdatingStateObject from "./components/ExerciseUpdatingStateObject";
 import ExerciseUpdateStateArray from "./components/ExerciseUpdateStateArray";
 import ExerciseUpdatingStateArrayOfObjects from "./components/ExerciseUpdatingStateArrayOfObjects";
+import ExpandableText from "./components/ExpandableText";
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -44,6 +45,19 @@ function App() {
       <ExerciseUpdatingStateObject />
       <ExerciseUpdateStateArray />
       <ExerciseUpdatingStateArrayOfObjects />
+      <ExpandableText maxChars={10}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo autem
+        iste dolorem eveniet. Distinctio iusto, ullam dolorum commodi nihil
+        assumenda debitis at nulla doloremque, sint molestias velit, nobis earum
+        minima sunt! Incidunt delectus, excepturi amet adipisci nesciunt veniam
+        cupiditate laboriosam, quaerat dignissimos accusantium vitae a ipsam,
+        obcaecati voluptate ab facilis illo quas tempora culpa numquam. Deserunt
+        tempore placeat totam. Voluptatum voluptatibus minus praesentium eum
+        nesciunt et inventore fugit eos corrupti! Deleniti, inventore officiis
+        illum incidunt provident fuga aut totam neque sequi libero? Nemo esse
+        dolore autem qui libero ea repudiandae? Necessitatibus molestias facere
+        autem possimus harum, cumque dolorum asperiores enim.
+      </ExpandableText>
     </div>
   );
 }

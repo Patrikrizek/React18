@@ -12,6 +12,7 @@ import ExerciseUpdatingStateObject from "./components/ExerciseUpdatingStateObjec
 import ExerciseUpdateStateArray from "./components/ExerciseUpdateStateArray";
 import ExerciseUpdatingStateArrayOfObjects from "./components/ExerciseUpdatingStateArrayOfObjects";
 import ExpandableText from "./components/ExpandableText";
+import Form from "./components/Form";
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -58,6 +59,9 @@ function App() {
         dolore autem qui libero ea repudiandae? Necessitatibus molestias facere
         autem possimus harum, cumque dolorum asperiores enim.
       </ExpandableText>
+
+      <h3 className="mt-5">Forms</h3>
+      <Form />
     </div>
   );
 }

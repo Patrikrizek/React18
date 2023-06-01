@@ -1,67 +1,64 @@
-import ListGroup from "./components/ListGroup";
-import Alert from "./components/Alert";
-import Button from "./components/Button";
-import Like from "./components/Like";
-import StateIntro from "./components/StateIntro";
 import { useState } from "react";
-import { BsFillCalendarFill } from "react-icons/bs";
-import Message from "./components/Message";
-import NavBar from "./components/NavBar";
-import Cart from "./components/Cart";
-import ExerciseUpdatingStateObject from "./components/ExerciseUpdatingStateObject";
-import ExerciseUpdateStateArray from "./components/ExerciseUpdateStateArray";
-import ExerciseUpdatingStateArrayOfObjects from "./components/ExerciseUpdatingStateArrayOfObjects";
-import ExpandableText from "./components/ExpandableText";
-import Form from "./components/Form";
+import ExpenseList from "./expense-tracker/components/ExpenseList";
+import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
+import ExpenseForm from "./expense-tracker/components/ExpenseForm";
+import categories from "./expense-tracker/categories";
 
 function App() {
-  const [alertVisible, setAlertVisibility] = useState(false);
-  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [expenses, setExpenses] = useState([
+    {
+      id: 1,
+      description: "aaa",
+      amount: 10,
+      category: "Utilities",
+    },
+    {
+      id: 2,
+      description: "abb",
+      amount: 50,
+      category: "Utilities",
+    },
+    {
+      id: 3,
+      description: "abc",
+      amount: 8,
+      category: "Utilities",
+    },
+    {
+      id: 4,
+      description: "def",
+      amount: 2,
+      category: "Utilities",
+    },
+  ]);
 
-  const handleSelectItem = () => {
-    console.log("clicked");
-  };
-
-  const [cardItems, setCardItems] = useState(["Product 1", "Product 2"]);
+  const visibleExpenses = selectedCategory
+    ? expenses.filter((e) => e.category === selectedCategory)
+    : expenses;
 
   return (
     <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
+      <div className="mb-5">
+        <ExpenseForm
+          onSubmit={(newExpense) =>
+            setExpenses([
+              ...expenses,
+              { ...newExpense, id: expenses.length + 1 },
+            ])
+          }
+        />
+      </div>
+
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
       />
-      {alertVisible && (
-        <Alert onClose={() => setAlertVisibility(false)}>
-          Hello <span>World</span>
-        </Alert>
-      )}
-      <Button onClick={() => setAlertVisibility(true)}>Click me!</Button>
-      <BsFillCalendarFill color="green" size="40" />
-      <Like onClick={() => console.log("clicked")} />
-      <StateIntro />
-
-      <NavBar cardItemsCount={cardItems.length} />
-      <Cart cartItems={cardItems} onClear={() => setCardItems([])} />
-      <ExerciseUpdatingStateObject />
-      <ExerciseUpdateStateArray />
-      <ExerciseUpdatingStateArrayOfObjects />
-      <ExpandableText maxChars={10}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo autem
-        iste dolorem eveniet. Distinctio iusto, ullam dolorum commodi nihil
-        assumenda debitis at nulla doloremque, sint molestias velit, nobis earum
-        minima sunt! Incidunt delectus, excepturi amet adipisci nesciunt veniam
-        cupiditate laboriosam, quaerat dignissimos accusantium vitae a ipsam,
-        obcaecati voluptate ab facilis illo quas tempora culpa numquam. Deserunt
-        tempore placeat totam. Voluptatum voluptatibus minus praesentium eum
-        nesciunt et inventore fugit eos corrupti! Deleniti, inventore officiis
-        illum incidunt provident fuga aut totam neque sequi libero? Nemo esse
-        dolore autem qui libero ea repudiandae? Necessitatibus molestias facere
-        autem possimus harum, cumque dolorum asperiores enim.
-      </ExpandableText>
-
-      <h3 className="mt-5">Forms</h3>
-      <Form />
     </div>
   );
 }

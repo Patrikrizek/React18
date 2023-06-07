@@ -1,5 +1,5 @@
-import axios, { AxiosError, CanceledError } from "axios";
 import { useEffect, useState } from "react";
+import apiClient, { CanceledError } from "./services/api-client";
 
 interface User {
   id: number;
@@ -15,8 +15,8 @@ function App() {
     const controller = new AbortController();
 
     setLoading(true);
-    axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/users", {
+    apiClient
+      .get<User[]>("/users", {
         signal: controller.signal,
       })
       .then((response) => {
@@ -44,12 +44,10 @@ function App() {
     // if possible use the optimist update
     setUsers(users.filter((u) => u.id !== user.id));
 
-    axios
-      .delete("https://jsonplaceholder.typicode.com/users/" + user.id)
-      .catch((error) => {
-        setError(error.message);
-        setUsers(originalUsers);
-      });
+    apiClient.delete("/users/" + user.id).catch((error) => {
+      setError(error.message);
+      setUsers(originalUsers);
+    });
   };
 
   const addUser = () => {
@@ -57,8 +55,8 @@ function App() {
     const newUser = { id: 0, name: "Patrik" };
     setUsers([newUser, ...users]);
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/users/", newUser)
+    apiClient
+      .post("/users/", newUser)
       // .then((res) => setUsers([res.data, ...users]))
 
       // when we use destruction the code is a little more readable
@@ -76,15 +74,10 @@ function App() {
     setUsers(users.map((u) => (u.id == user.id ? updatedUser : u)));
 
     // Depending on the back end we can use "patch" or "put" method
-    axios
-      .patch(
-        "https://jsonplaceholder.typicode.com/users/" + user.id,
-        updatedUser
-      )
-      .catch((error) => {
-        setError(error.message);
-        setUsers(originalUsers);
-      });
+    apiClient.patch("/users/" + user.id, updatedUser).catch((error) => {
+      setError(error.message);
+      setUsers(originalUsers);
+    });
   };
 
   return (

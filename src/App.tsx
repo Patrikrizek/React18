@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    const { request, cancel } = userService.getAllUsers();
+    const { request, cancel } = userService.getAll<User>();
     request
       .then((response) => {
         setUsers(response.data);
@@ -35,7 +35,7 @@ function App() {
 
     // if possible use the optimist update
     setUsers(users.filter((u) => u.id !== user.id));
-    userService.deleteUser(user.id).catch((error) => {
+    userService.delete(user.id).catch((error) => {
       setError(error.message);
       setUsers(originalUsers);
     });
@@ -47,7 +47,7 @@ function App() {
     setUsers([newUser, ...users]);
 
     userService
-      .createUser(newUser)
+      .create(newUser)
       // .then((res) => setUsers([res.data, ...users]))
 
       // when we use destruction the code is a little more readable
@@ -64,7 +64,7 @@ function App() {
     const updatedUser = { ...user, name: user.name + "!" };
     setUsers(users.map((u) => (u.id == user.id ? updatedUser : u)));
 
-    userService.updateUser(updatedUser).catch((error) => {
+    userService.update(updatedUser).catch((error) => {
       setError(error.message);
       setUsers(originalUsers);
     });
